@@ -5,7 +5,6 @@ import Home from '../pages/home';
 
 //importando a função que sera testada (neste caso, removeItem)
 import { removeItem } from '../components/AsyncStorage';
-import { useNavigation } from '@react-navigation/native';
 
 // criando funções falsas para simular a navegação e o push
 const mockNavigate = jest.fn();
@@ -48,7 +47,7 @@ describe("Test Home Screen", () => {
 
     fireEvent.press(btn)
 
-    expect(mockNavigate).toHavebeenCalledWith("Filmes")
+    expect(mockNavigate).toHaveBeenCalledWith("Filmes")
   })
 
   it("Chamar removeItem e navegar para a tela de Login", async () => {
@@ -58,9 +57,8 @@ describe("Test Home Screen", () => {
     fireEvent.press(bntSair)
 
     await waitFor(() => {
-      expect(removeItem).toHavebeenCalledWith("login");
-      expect(mockPush).toHavebeenCalledWith("Login")
+      expect(removeItem).toHaveBeenCalledWith("login");
+      expect(mockPush).toHaveBeenCalledWith("Login")
     })
-
   })
 })

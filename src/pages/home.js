@@ -24,7 +24,7 @@ export default function Home() {
   return (
     <ImageBackground
       style={styles.container}
-      source={require("../assets/images/fundologin.jpg")}
+      source={require("../assets/images/lua.jpg")}
     >
       <View style={{ alignItems: "center", gap: 20 }}>
         <Text style={styles.titulo}>BEM VINDO (A)!</Text>
