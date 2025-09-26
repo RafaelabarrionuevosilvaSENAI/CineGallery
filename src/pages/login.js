@@ -1,41 +1,46 @@
-import { ImageBackground, Text, View, TouchableOpacity, Pressable, TextInput } from 'react-native';
+import { StatusBar } from "expo-status-bar";
+import {
+  Text,
+  ImageBackground,
+  TouchableOpacity,
+  View,
+  Pressable,
+} from "react-native";
 
-import { StatusBar } from 'expo-status-bar'
+// IMPORTAÇÃO COMPONENTES
+import InputComp from "../components/InputComp";
+import TextComp from "../components/TextComp";
 
-// Import Styles!
-import { styleslogin } from '../styles/styleslogin'
-import { styles } from '../styles/styles';
+import { styles } from "../styles/styles";
 
-//import { StylesOnboarding } from '../styles/StylesOnboarding';
+// IMPORTAÇÃO NATIVE
+import { useNavigation } from "@react-navigation/native";
 
-// Import Icon!
-import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
+import { setItem } from "../components/AsyncStorage";
 
+export default function Login() {
+  const navigation = useNavigation();
 
-export default function login() {
+  const handleLogin = async () => {
+    await setItem("login", "1");
+    navigation.navigate("Home");
+  };
+
   return (
     <ImageBackground
-      style={styleslogin.container}
-      source={require("../images/lua.jpg")} blurRadius={15}>
-      <View style={{
-        width: "100%", height: "100%", backgroundColor: "#white", padding: 40,
-        justifyContent: 'center',
-      }}>
-        <MaterialCommunityIcons name="flower-tulip-outline" size={50} color="white" style={{ marginBottom: 20 }} />
-        <Text style={styleslogin.title}>Sign Up</Text>
-        <Text style={styleslogin.text}>Sign up now for free films.</Text>
-
-        <View style={{ marginTop: 80 }}>
-          <TextInput style={styleslogin.input} placeholderTextColor={"#white"} placeholder='Name' />
-          <TextInput style={styleslogin.input} placeholderTextColor={"#white"} placeholder='Password' />
-        </View>
-
-        <TouchableOpacity style={[styles.btn, { marginTop: 80, width: "100%" }]} >
-          <Text style={styles.txt}>Sign Up</Text>
-        </TouchableOpacity>
-
+      style={styles.background}
+      source={require("../assets/images/fundologin.jpg")}
+    >
+      <View style={styles.inputcomp}>
+        <TextComp txt="Usuário:" />
+        <InputComp textPlaceHolder={"Digite seu usuário"} password={false} />
+        <TextComp txt="Senha:" />
+        <InputComp textPlaceHolder={"Digite sua senha"} password={true} />
       </View>
-      <StatusBar hidden />
+
+      <TouchableOpacity onPress={handleLogin} style={styles.btnSI}>
+        <Text style={styles.cadastroSI}> ENTRAR </Text>
+      </TouchableOpacity>
     </ImageBackground>
   );
 }
